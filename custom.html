@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stellar Attendance - Attendance Management System</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-57x57.png'>
+    <link rel="apple-touch-icon" sizes="60x60" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-60x60.png'>
+    <link rel="apple-touch-icon" sizes="72x72" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-72x72.png'>
+    <link rel="apple-touch-icon" sizes="76x76" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-76x76.png'>
+    <link rel="apple-touch-icon" sizes="114x114" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-114x114.png'>
+    <link rel="apple-touch-icon" sizes="120x120" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-120x120.png'>
+    <link rel="apple-touch-icon" sizes="144x144" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-144x144.png'>
+    <link rel="apple-touch-icon" sizes="152x152" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-152x152.png'>
+    <link rel="apple-touch-icon" sizes="180x180" href='https://stellarbd.com/stellar_attendance/static/favicon/apple-icon-180x180.png'>
+    <link rel="icon" type="image/png" sizes="192x192" href='https://stellarbd.com/stellar_attendance/static/favicon/android-icon-192x192.png'>
+    <link rel="icon" type="image/png" sizes="32x32" href='https://stellarbd.com/stellar_attendance/static/favicon/favicon-32x32.png'>
+    <link rel="icon" type="image/png" sizes="96x96" href='https://stellarbd.com/stellar_attendance/static/favicon/favicon-96x96.png'>
+    <link rel="icon" type="image/png" sizes="16x16" href='https://stellarbd.com/stellar_attendance/static/favicon/favicon-16x16.png'>
+    <link rel="manifest" href='static/favicon/manifest.json'>
+    <meta name="msapplication-TileColor" content="#d04451">
+    <meta name="msapplication-TileImage" content='static/favicon/ms-icon-144x144.png'>
+
+    <link href='static/css/stack-interface.css' rel="stylesheet" type="text/css" media="all">
+    <link href='static/css/socicon.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/iconsmind.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/bootstrap.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/flickity.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/stack-interface.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/theme.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href='static/css/custom.css' rel="stylesheet" type="text/css" media="all"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700|Yanone+Kaffeesatz:400,700"
+          rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body data-smooth-scroll-offset="77">
+<!-- {{if response.flash:}}
+    <div class="form-success" id="form-success-flash">{{=response.flash or ''}}</div>
+<script type="text/javascript">
+    setTimeout(function() {
+    $('#form-success-flash').fadeOut('fast');
+    }, 3000); // <-- time in milliseconds
+</script>
+{{pass}} -->
+
+<div class="nav-container">
+    <div class="via-1496740201486" via="via-1496740201486" vio="Nav Cus">
+        <nav class="bar bar-toggle visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1 col-sm-2 col-xs-3">
+                        <div class="bar__module">
+                            <a href="#top-123" class="inner-link"> <img class="logo logo-dark" alt="logo"
+                                                                        src='static/images/logo-dark-new.png'>
+                                <img class="logo logo-light" alt="logo"
+                                     src='static/images/logo-light-new.png'> </a>
+                        </div>
+                    </div>
+                    <div class="col-md-11 col-sm-10 col-xs-9">
+                        <div class="bar__module">
+                            <div class="modal-instance pull-right">
+                                <a class="modal-trigger menu-toggle" href="#"> <i
+                                        class="stack-interface stack-menu"></i> </a>
+                                <div class="modal-container menu-fullscreen">
+                                    <div class="modal-content" data-width="100%" data-height="100%">
+                                        <div class="pos-vertical-center pos-asbolute text-center">
+                                            <div class="heading-block"><img alt="Image"
+                                                                            src='static/images/logo-light-new.png'
+                                                                            class="logo image--xs">
+                                                <p class="lead">STELLAR ATTENDANCE</p>
+                                            </div>
+                                            <ul class="menu-vertical">
+                                                <li class="h4"><a href="#features-123">Features</a></li>
+                                                <!-- <li class="h4"><a href="#contact-123">Contact</a></li> -->
+                                                <li class="h4"><a href="{{=URL('default','faq')}}">FAQ</a></li>
+                                                <li class="h4"><a class="btn btn--sm type--uppercase inner-link" href=""
+                                                                  target="_self"> <span class="btn__text">+(880) 1736 518223</span>
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pos-absolute pos-bottom text-center">
+                                            <ul class="social-list list-inline list--hover">
+                                                <li>
+                                                    <a href="https://www.facebook.com/Rumy-Technologies-BD-1149617555061405"><i
+                                                            class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                                <li><a href="https://twitter.com/RumyTech"><i
+                                                        class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                                <li><a href="https://www.linkedin.com/company/rumy"><i
+                                                        class="socicon socicon-linkedin icon icon--xs"></i></a></li>
+                                            </ul>
+                                            <p class="type--fine-print type--fade">© Copyright 2017 — Stellar</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav id="menu2" class="bar bar--sm bar-1 hidden-xs hidden-sm bar--transparent bar--absolute"
+             data-scroll-class='366px:pos-fixed'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 text-center text-left-sm hidden-xs hidden-sm col-md-push-5">
+                        <div class="bar__module">
+                            <a class="inner-link" href="#top-123"> <img class="logo logo-dark" alt="logo"
+                                                                        src='static/images/logo-dark-new.png'>
+                                <img class="logo logo-light" alt="logo" src='static/images/logo-light-new.png'></a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-pull-2">
+                        <div class="bar__module">
+                            <ul class="menu-horizontal text-left">
+                                <li><a href="#features-123" class="inner-link" target="_self">
+                                    Features</a></li>
+                                <li><a href="#contact-123" class="inner-link" target="_self">
+                                    <!-- Contact</a></li> -->
+                                <li><a href="{{=URL('default','faq')}}">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-right text-left-xs text-left-sm">
+                        <div class="bar__module">
+                            <a class="btn btn--sm type--uppercase inner-link" href="" target="_self"> <span
+                                    class="btn__text">+(880) 1736 518223</span> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="main-container">
+    <section id="top-123" class="cover imagebg text-center height-100" style="min-height: 100vh;"
+             data-gradient-bg="#181745,#583B9F,#686DD1,#8F60A8">
+        <div class="background-image-holder background--middle"><img alt="background"
+                                                                     src='static/images/pexels-photo-380768-min.jpg'>
+        </div>
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-sm-9 col-md-7">
+                    <h1 style="font-family: 'Yanone Kaffeesatz', 'Fjalla One', Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;font-weight: 700;text-transform: uppercase;letter-spacing: 10px;font-size: 3.94285714em">
+                        Stellar Attendance</h1>
+                    <div class="typed-headline">
+                        <span style="font-size:18px">With Our Wireless Attendance Devices, You Can </span>
+                        <span style="font-size:18px;font-weight:700;color: #FFFFFF!important;"
+                              class="h4 typed-text typed-text--cursor color--primary-2"
+                              data-typed-strings="Minimize Operating Costs,Give Uninterrupted Service,Provide Remote Maintenance,Provide Extended Warranty To Clients">Minimize Operating Expenses</span>
+                    </div>
+                    <a class="btn btn--primary type--uppercase inner-link" href="#features-123"> <span
+                            class="btn__text">
+						Read More</span> </a>
+                    <a class="btn btn--filled type--uppercase hidden-xs" href="https://www.dropbox.com/s/dgoexhebqx9de9q/Brochure.pdf?dl=0"> <span
+                            class="btn__text">
+						Download Brochure</span> </a>
+                    <div class='visible-xs'>
+                        <div class='clear'>
+                        </div>
+                        <a class="btn btn--filled type--uppercase" href='static/Brochure.pdf'> <span
+                                class="btn__text">
+						Download Brochure</span> </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="imageblock switchable feature-large bg--secondary">
+
+        <div class="imageblock__content col-md-6 col-sm-5 pos-right hidden-xs">
+            <div class="background-image-holder" style="height: 90%; margin-top: 5%;"><img alt="image" src='static/images/device_1.png'></div>
+        </div>
+        <div class="imageblock__content col-xs-12 visible-xs">
+            <img class='visible-xs' style='margin: 0 auto;max-width: 50%;height: auto' alt="image"
+                 src='static/images/device_1.png'/>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-6">
+                    <h2>Easy Connectivity</h2>
+                    <p class="lead">Our devices have Wifi, LAN and GPRS connectivity. They connect directly to our server and hence no need for local PC. Attendance/access data are updated within few moments.</p>
+                    <div class="feature-large__group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature feature-6"><i
+                                        class="icon color--primary icon-Loading-3 icon--sm"></i>
+                                    <h5>Hassle Free Installation</h5>
+                                    <p>Stellar devices don't need IT experts to install or replace. A new device can be added or an old device can be replaced with just few clicks from a mobile device/PC. Hassle free.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature feature-6"><i class="icon color--primary icon-Switch icon--sm"></i>
+                                    <h5>Integrate Easily to Existing System</h5>
+                                    <p>We provide Web platform and APIs that allow you to seamlessly integrate the devices to your current software with just few clicks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </section>
+    <!--<section class="switchable feature-large unpad&#45;&#45;top unpad&#45;&#45;bottom">-->
+    <!--<div class="container">-->
+    <!--<div class="row">-->
+    <!--<div class="vertical-middle">-->
+    <!--<div class="col-sm-6 vertical-middle-inner">-->
+    <!--<div class="switchable__text">-->
+    <!--<h2>A Wire Free System</h2>-->
+    <!--<p class="lead"> All our devices are wifi connected and thus eliminate LAN cabling or need for a local PC. Attendance/access data are updated to your server within few moments.</p> <a href="#">Learn More »</a> </div>-->
+    <!--</div>-->
+    <!--<div class="col-sm-6 col-md-4 col-xs-12 text-center"> <img alt="Image" src='static/images/s10.png'> </div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</section>-->
+    <!--<section class="bg&#45;&#45;secondary space&#45;&#45;sm">-->
+    <!--<div class="container">-->
+    <!--<div class="row">-->
+    <!--<div class="col-sm-6">-->
+    <!--<div class="feature feature-5 boxed boxed&#45;&#45;lg boxed&#45;&#45;border"> <i class="icon icon-Loading-3 icon&#45;&#45;lg"></i>-->
+    <!--<div class="feature__body">-->
+    <!--<h5>Hassle Free Installation</h5>-->
+    <!--<p>Stellar devices don't need IT experts to install or replace. A new device can be added or an old device can be replaced with just few clicks from a mobile device/PC. Hassle free.</p>-->
+    <!--<a href="#"> </a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-sm-6">-->
+    <!--<div class="feature feature-5 boxed boxed&#45;&#45;lg boxed&#45;&#45;border"> <i class="icon icon-Switch icon&#45;&#45;lg"></i>-->
+    <!--<div class="feature__body">-->
+    <!--<h5>Integrate Easily to Existing System</h5>-->
+    <!--<p>We provide Web platform and APIs that allow you to seamlessly integrate the devices to your current software with just few clicks.</p>-->
+    <!--<a href="#"> </a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</section>-->
+    <section id="features-123" class="bg--dark padding-110px-tb xs-padding-60px-tb">
+        <div class="container">
+            <!--<h2 class="text-center">Features</h2>-->
+            <div class="row equalize xs-equalize-auto equalize-display-inherit">
+                <!-- feature box -->
+                <div class="col-md-4 col-sm-6 col-xs-12 display-table xs-margin-nineteen-bottom">
+                    <div class="display-table-cell-vertical-middle">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Checkout margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">
+                                    Low Installation Cost</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>By designing and optimizing for local need we could lower the price significantly compared to imported products while maintaining high quality.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Consulting margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">
+                                    Provide Superior Customer Care</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>In case of fault/failure, our system provides immediate notifications. A smooth service to your client is our top priority.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Security-Check margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">
+                                    Get Extended Warranty</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>We stand behind our products. All our devices come with extended warranty (Repair and replacement).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end feature box -->
+                <div class="col-md-4 visible-md display-table xs-margin-nineteen-bottom">
+                    <div class="display-table-cell-vertical-middle">
+                        <img class="img-responsive margin-lr-auto" src='static/images/3.png' alt="">
+                    </div>
+                </div>
+                <!-- feature box -->
+                <div class="col-md-4 col-sm-6 col-xs-12 display-table">
+                    <div class="display-table-cell-vertical-middle">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Coins margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">
+                                    Reduce Maintenance Cost</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>All our devices can be maintained remotely without sending an expert. New features can be pushed Over the Air (OTA). This can reduce your maintenance cost dramatically.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Thunder margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">
+                                    Give Uninterrupted Service</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>Stellar devices can be connected to standard power banks to provide service without interruption during power failure.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 text-center">
+                                <i class="icon icon-Geek margin-five-bottom text-light-green title-extra-large tz-icon-color"></i>
+                                <h3 class="text-large font-weight-400 margin-six-bottom xs-margin-two-bottom text-white vertical-align-middle tz-text">Be Part of a Larger Dream</h3>
+                                <div class="text-medium text-blue-gray tz-text">
+                                    <p>Our devices are proudly <b style="font-weight:700;color:#F4511E">designed and manufactured in Bangladesh.</b>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end feature box -->
+            </div>
+        </div>
+    </section>
+    <section class="testimonials-1 space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h2 class="lead text-center" style="font-size: 24px"> Trusted by a number of <br
+                            class="hidden-xs hidden-sm"> institutions all over bangladesh</h2>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="slider slider--inline-arrows text-center" data-arrows="true" data-timing="3000">
+                        <ul class="slides">
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/robi.svg' alt=""></span>
+                                    <span class="client--list">Robi</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/sks.jpg' alt=""></span>
+                                    <span class="client--list">SKS</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/OTOBI.svg' alt=""></span>
+                                    <span class="client--list">Otobi</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/mamata.png' alt=""></span>
+                                    <span class="client--list">Mamata</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/max.png' alt=""></span>
+                                    <span class="client--list">Max Hospitals</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/tritech.png' alt=""></span>
+                                    <span class="client--list">Tritech</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/brands/DNCC.png' alt=""></span>
+                                    <span class="client--list">DNCC</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/acumen-school.png' alt=""></span>
+                                    <span class="client--list">Acumen School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Bakalia-Residential-Model-School.png' alt=""></span>
+                                    <span class="client--list">Bakalia Residential Model School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Chakaria Central High School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Chakaria Grammar School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Chittagong City Corporation Municipal Model School & College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/chittagong-Digital-School-And-Collage.jpg' alt=""></span>
+                                    <span class="client--list">Chittagong Digital School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Armed-Police-Battalion-Public-School.jpg' alt=""></span>
+                                    <span class="client--list">Armed Police Battalion Public School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Chittagong-Government-Women-College.png' alt=""></span>
+                                    <span class="client--list">Chittagong Government Women's College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/City-Govt.-High-School.png' alt=""></span>
+                                    <span class="client--list">City Govt. High School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">CNB School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Communication Village</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Darul-Islam-Model-Academy.jpg' alt=""></span>
+                                    <span class="client--list">Darul Islam Model Academy</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Gohira-College.jpg' alt=""></span>
+                                    <span class="client--list">Gohira College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Halishahar Public School & College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Ispahani-Public-School-And-College.jpg' alt=""></span>
+                                    <span class="client--list">Ispahani Public School & College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Learning-Birds-School-and-College.jpg' alt=""></span>
+                                    <span class="client--list">Learning Birds</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Mern-Sun-School-And-College.jpg' alt=""></span>
+                                    <span class="client--list">Mern Sun School & College</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Jaisthapura-Nirubala-Chowdhury-Academy.webp' alt=""></span>
+                                    <span class="client--list">Nirubala Academy</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Patherghata Girls' High School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Pinnacle-School.png' alt=""></span>
+                                    <span class="client--list">Pinnacle School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Readers-School.jpg' alt=""></span>
+                                    <span class="client--list">Readers School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px"
+                                            src='static/images/Raozan-English-School.jpg' alt=""></span>
+                                    <span class="client--list">Raozan English School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Shershah School</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/muthofun.png'
+                                            alt=""></span>
+                                    <span class="client--list">Muthofun </span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/gulf_air.png'
+                                            alt=""></span>
+                                    <span class="client--list">Gulf Air</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">United Residential School & college</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/well_food.png'
+                                            alt=""></span>
+                                    <span class="client--list">Well Food</span>
+                                </div>
+                            </li>
+                            <li class="col-sm-2 col-xs-3">
+                                <div col="col-sm-12" style="margin-bottom: 80px;margin-top: 80px">
+                                    <span class="client--list"><img class="img-responsive margin-lr-auto"
+                                            style="height: 100px; margin-bottom: 10px" src='static/images/generic.png'
+                                            alt=""></span>
+                                    <span class="client--list">Lohagara Shahpir Pilot High School</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="bg--secondary text-center space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-12">
+                    <div class="row">
+                        <div class="text-center"><h2>Contact Us</h2></div>
+                        <div class="text-left form-email">
+                        {{=form.custom.begin}}
+                            <div class="col-sm-6"><label>Your Name:</label> <input type="text" name="name"
+                                                                                   class="validate-required"></div>
+                            <div class="col-sm-6"><label>Email Address:</label> <input type="email" name="email"
+                                                                                       class="validate-required validate-email">
+                            </div>
+                            <div class="col-sm-12"><label>Message:</label> <textarea rows="6" name="message"
+                                                                                     class="validate-required"></textarea>
+                            </div>
+                            <div class="col-sm-5 col-md-4">
+                                <button type="submit" name="submit" class="btn btn--primary type--uppercase">Send Enquiry</button>
+                            </div>
+                        {{=form.custom.end}}
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact-123" class="bg--secondary space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="feature feature-2 boxed boxed--border"><i
+                            class="icon color--primary icon-Map-Marker2"></i>
+                        <div class="feature__body">
+                            <p>Stellar, 1005/2/1872 CDA Avenue,<br>East Nasirabad, Chittagong,<br>Bangladesh </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="feature feature-2 boxed boxed--border"><i class="icon color--primary icon-Email"></i>
+                        <div class="feature__body">
+                            <p><b>
+                                General Enquiries<br></b>admin@rumytechnologies.com&nbsp;<br><br></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="feature feature-2 boxed boxed--border"><i
+                            class="icon color--primary icon-Smartphone-4"></i>
+                        <div class="feature__body">
+                            <p><b>Call Us Today!</b><br>+8801736518223<br><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- <section class="unpad space--xs">
+        <div class="map-container border--round" data-maps-api-key=""
+             data-address="22.365653, 91.821755" data-marker-title="Stack"
+             data-map-style="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]"
+             data-map-zoom="17"></div>
+    </section> -->
+    <footer class="footer-3 text-center-xs space--xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6"><img alt="Image" class="logo" src='static/images/logo-dark-new.png'>
+                    <ul class="list-inline list--hover">
+                        <li><a class="inner-link" href="features123"><span class="type--fine-print">  Get Stated</span></a>
+                        </li>
+                        <li><a href="mailto:admin@rumytechnologies.com"><span class="type--fine-print">admin@rumytechnologies.com&nbsp; </span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <ul class="social-list list-inline list--hover">
+                        <li><a href="https://www.facebook.com/Rumy-Technologies-BD-1149617555061405"><i
+                                class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                        <li><a href="https://twitter.com/RumyTech"><i class="socicon socicon-twitter icon icon--xs"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/company/rumy"><i
+                                class="socicon socicon-linkedin icon icon--xs"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="type--fine-print"> Stellar, 1005/2/1872 CDA Avenue, East Nasirabad, Chittagong,
+                        Bangladesh</p>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs"><span class="type--fine-print">© <span
+                        class="update-year">2017</span> Stellar</span> <a class="type--fine-print" href="#">Privacy
+                    Policy</a> <a class="type--fine-print" href="https://stellarbd.com" target="_self">Stellar</a></div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script src='static/js/jquery-3.1.1.min.js'></script>
+<script src='static/js/flickity.min.js'></script>
+<script src='static/js/parallax.js'></script>
+<script src='static/js/typed.min.js'></script>
+<script src='static/js/granim.min.js'></script>
+<script src='static/js/smooth-scroll.min.js'></script>
+<script src='static/js/scripts.js'></script>
+
+</body>
+
+</html>
