@@ -21,7 +21,7 @@ body {
     justify-content: center;
     flex-direction: column;
     transition: all ease 0.3s;
-    background-color: rgb(245, 245, 247);
+    background-color: rgb(255, 255, 255);
 }
 
 .cont {
@@ -157,6 +157,7 @@ header {
     outline: none;
     background-color: transparent;
     cursor: pointer;
+    /* margin-top: 35px; */
 }
 
 .main_shop i {
@@ -167,18 +168,18 @@ header {
     text-decoration: underline;
 }
 
-.vid {
-    /* background-image: url('./assets/main_back_gif.gif'); */
+/* .vid {
+    background-image: url('./assets/main_back_gif.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow-x: hidden;
-}
+} */
 
-.iphone_14_pro_page {
+/* .iphone_14_pro_page {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     flex-direction: column;
     height: 105vh;
     background: url('./assets/second_back.jpg');
@@ -198,38 +199,147 @@ header {
     color: white;
     font-size: 30px;
     font-weight: 300;
-}
+} */
 
 .iphone_links {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.iphone_14_wonderful {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: -40px;
+  }
+  
+  .iphone_14_wonderful {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
-    height: 100vh;
-    background: url('./assets/iphone_wonderful_back_s.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh;
+    background: url('./assets/All-Device-png.png') no-repeat center;
+    background-color: aliceblue;
+    background-size: 100%;
     padding-top: 70px;
-}
-
-.iphone_14_head {
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .iphone_14_head {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", Helvetica, sans-serif;
+    margin-top: 10px;
     font-size: 50px;
     font-weight: 600;
-}
+    color: #1d1d1f;
+  }
+  
+  /* Tablet & small laptop screens */
+@media (max-width: 1024px) {
+    .iphone_14_wonderful {
+      min-height: 50vh;
+      background-size: 90%;
+      padding-top: 50px;
+      padding-bottom: 40px;
+    }
+  
+    .iphone_14_head {
+      font-size: 42px;
+    }
+  
+    .iphone_links {
+      gap: 20px;
+    }
+  }
+  
+  /* Large phones / small tablets */
+  @media (max-width: 768px) {
+    .iphone_14_wonderful {
+      min-height: 30vh;
+      background-size: 95%;
+      padding-top: 40px;
+      padding-bottom: 30px;
+    }
+  
+    .iphone_14_head {
+      font-size: 36px;
+    }
+  
+    .iphone_links {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  }
+  
+  /* Mobile phones */
+  @media (max-width: 480px) {
+    .iphone_14_wonderful {
+      min-height: auto;
+      background-size: 100%;
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+  
+    .iphone_14_head {
+      font-size: 28px;
+      margin-top: 6px;
+    }
+  
+    .iphone_links {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+  
+  /* Small phones (e.g. iPhone SE, ≤ 360px) */
+  @media (max-width: 360px) {
+    .iphone_14_wonderful {
+    min-height: auto;
+      padding-top: 24px;
+      padding-bottom: 16px;
+    }
+  
+    .iphone_14_head {
+      font-size: 24px;
+    }
+  
+    .iphone_links {
+      gap: 10px;
+    }
+  }
+  
 
-.wonderful {
+  .typing-text {
+    bottom: 5vh;
     font-size: 30px;
-    color:  rgb(95, 92, 92);;
-    font-weight: 300;
-}
-
+    font-weight: 600;
+    color: #1d1d1f;
+    text-align: center;
+    min-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+  }
+  
+  .cursor {
+    display: inline-block;
+    margin-left: 4px;
+    color: #1d1d1f;
+    animation: blink 0.8s steps(1) infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .typing-text {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  }
+  
+/* 
 .features {
     display: flex;
     align-items: center;
@@ -307,82 +417,140 @@ header {
     font-size: 20px;
     color: rgb(95, 92, 92);
     font-weight: 400;
-}
+} */
 
-.watch_ipad{
+.DM_EM_GT{
     display: flex;
     align-items: center;
     justify-content: space-around;
     height: 100vh;
+    margin-bottom: 10px;
 }
 
-.watch_ipad .watch{
+.DM_EM_GT .DM20{
     height: 100%;
-    width: 49%;
-    background-color: rgb(1,1,0);
+    width: 30%;
     display: flex;
     align-items: center;
-    /* justify-content: space-around; */
     flex-direction: column;
-    background: url('./assets/watch_8.jpg');
-    background-size: cover;
+    background: url('./assets/DM-20.png');
+    background-color: #f5f5f7;
+    background-size: 70%;
     text-align: center;
-    background-position: center;
+    background-position: center calc(100% + 20%);
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+.DM_EM_GT .EM10{
+    height: 100%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: url('./assets/EM-10.png');
+    background-color: #f5f5f7;
+    background-size: 155%;
+    text-align: center;
+    background-position: center calc(100% + 5%);
     background-repeat: no-repeat;
 }
 
-.watch_ipad .ipad{
+.DM_EM_GT .GT20{
+    height: 100%;
+    width: 42.5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: url('./assets/Gateway Device.png');
+    background-color: #f5f5f7;
+    background-size: 70%;
+    text-align: center;
+    background-position: center calc(100% + 10%);
+    background-repeat: no-repeat;
+}
+
+.FC{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    margin-bottom: 10px;
+}
+
+.FC .FC10{
     height: 100%;
     width: 49%;
-    background-color: rgb(1,1,0);
-    background-image: url("./assets/ipad.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: url('./assets/FC-10.png');
+    background-color: aliceblue;
+    background-size: 80%;
     text-align: center;
+    background-position: center calc(100% - 20%);
+    background-repeat: no-repeat;
+    margin-left: 5px;
 }
 
-/* .watch_ipad .watch .watch_image {
+.FC .FC5{
     height: 100%;
-    width: 100%;
-    background-image: url("./assets/watch_8.jpg");
-    background-position: center;
+    width: 49%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: url('./assets/FC-05.png');
+    background-color: aliceblue;
+    background-size: 82%;
+    text-align: center;
+    background-position: center calc(100% + 10%);
     background-repeat: no-repeat;
-    background-size: cover;
-} */
+    margin-right: 5px;
+}
 
-
-
-.watch_ipad .watch .watch_name {
-    color: white;
+.prod_name {
+    color: rgb(0, 0, 0);
     font-size: 32px;
     text-align: center;
     display: flex;
     justify-content: baseline;
-    margin-top: 70px;
+    margin-top: 5%;
+    margin-bottom: 0px;
     font-weight: bold;
-    /* align-items: start; */
 }
 
-.watch_ipad .watch .watch_name i {
-    padding-right: 6px;
+.prod_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.1%;
+  }
+
+.prod_btn {
+    color: #127be4;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.watch_ipad .watch .series_8 {
+
+/* .watch_ipad .watch .series_8 {
     color: rgb(200,32,38);
     font-weight: bold;
     font-size: 13px;
     letter-spacing: 1px;
     font-weight: bold;
-}
+} */
 
-.watch_ipad .watch .watch_tagline {
+/* .watch_ipad .watch .watch_tagline {
     margin-top: 20px;
     color: white;
     font-size: 23px;
     font-weight: 300;
-}
+} */
 
 .ipad .mac_name{
     text-align: center;
@@ -391,14 +559,6 @@ header {
     margin-top: 70px;
 }
 
-.ipad .inline_mac {
-    /* display: inline-block; */
-    display: flex;;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 300;
-}
 
 .airpods_trade {
     display: flex;
