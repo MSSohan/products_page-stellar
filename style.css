@@ -464,7 +464,7 @@ header {
     flex-direction: column;
     background: url('./assets/Gateway Device.png');
     background-color: #f5f5f7;
-    background-size: 70%;
+    background-size: 95%;
     text-align: center;
     background-position: center calc(100% + 10%);
     background-repeat: no-repeat;
