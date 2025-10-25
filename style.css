@@ -918,6 +918,10 @@
         width: 80px;
         margin-bottom: 40px;
     }
+/* ========================================
+   LOCATION SECTION STYLES
+   ======================================== */
+.location-section {
 }
 
 @media (max-width: 767px) {
