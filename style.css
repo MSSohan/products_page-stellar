@@ -934,6 +934,27 @@
 @media (max-width: 767px) {
     .location-section {
         padding: 50px 0;
+.location-section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+    }
+}
+
     }
 
     .location-content {
