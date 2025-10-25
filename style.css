@@ -931,9 +931,6 @@
     position: relative;
 }
 
-@media (max-width: 767px) {
-    .location-section {
-        padding: 50px 0;
 .location-section-title {
     font-size: 48px;
     font-weight: 700;
@@ -952,6 +949,11 @@
     }
     to {
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+    to {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+    }
+}
+
     }
 }
 
