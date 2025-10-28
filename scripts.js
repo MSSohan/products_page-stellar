@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Create YouTube iframe with auto-play enabled
+      // Create YouTube iframe with auto-play enabled - Fixed for deployment
       videoIframe = document.createElement('iframe');
-      videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&enablejsapi=1&origin=${window.location.origin}`;
+      videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1&cc_load_policy=0&controls=1&disablekb=1&fs=1&hl=en&iv_load_policy=3&modestbranding=1&origin=*`;
       videoIframe.title = 'GPS / Geo Fencing Attendance Video';
       videoIframe.frameBorder = '0';
       videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isVideoPaused = true;
         
         // Add pause indicator
-        videoPlayer.style.opacity = '0.7';
+        videoPlayer.style.opacity = '0.8';
         console.log('Video paused');
       }
     }
@@ -114,19 +114,20 @@ document.addEventListener("DOMContentLoaded", () => {
     function resetVideo() {
       if (videoIframe) {
         const videoId = videoThumbnail.getAttribute('data-video-id');
-        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&enablejsapi=1&origin=${window.location.origin}&start=0`;
+        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1&cc_load_policy=0&controls=1&disablekb=1&fs=1&hl=en&iv_load_policy=3&modestbranding=1&origin=*&start=0`;
         isVideoPaused = false;
         videoPlayer.style.opacity = '1';
         console.log('Video reset to beginning');
       }
     }
 
-    // Intersection Observer for auto-play/pause when section visibility changes
+    // Enhanced Intersection Observer with fallback for deployment issues
     function setupIntersectionObserver() {
       if (!('IntersectionObserver' in window)) {
         // Fallback: Auto-play after a short delay if IntersectionObserver is not supported
+        console.log('IntersectionObserver not supported, using fallback...');
         setTimeout(() => {
-          loadAndPlayVideo();
+          loadAndPlayVideoWithFallback();
         }, 2000);
         return;
       }
@@ -140,12 +141,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
-          const wasVisible = entry.intersectionRatio >= 0.5;
           
           if (isVisible && !hasAutoPlayed) {
             // Section becomes visible for the first time - load and play video
             console.log('GPS section is now visible, auto-playing video...');
-            loadAndPlayVideo();
+            loadAndPlayVideoWithFallback();
           } else if (isVisible && isVideoPaused) {
             // Section becomes visible again - resume video
             console.log('GPS section is visible again, resuming video...');
@@ -163,15 +163,70 @@ document.addEventListener("DOMContentLoaded", () => {
       if (gpsSection) {
         observer.observe(gpsSection);
         console.log('Intersection Observer set up for GPS section with pause/resume functionality');
+        
+        // Additional fallback: Try auto-play after 5 seconds regardless
+        setTimeout(() => {
+          if (!hasAutoPlayed) {
+            console.log('Fallback: Attempting to auto-play video after 5 seconds...');
+            loadAndPlayVideoWithFallback();
+          }
+        }, 5000);
+        
       } else {
-        console.log('GPS section not found for Intersection Observer');
+        console.log('GPS section not found for Intersection Observer, using fallback...');
+        // Immediate fallback if section not found
+        setTimeout(() => {
+          loadAndPlayVideoWithFallback();
+        }, 2000);
+      }
+    }
+
+    // Enhanced video loading with deployment fallback
+    function loadAndPlayVideoWithFallback() {
+      try {
+        loadAndPlayVideo();
+      } catch (error) {
+        console.error('Error loading video:', error);
+        
+        // Fallback: Create iframe directly without auto-play
+        const videoId = videoThumbnail.getAttribute('data-video-id');
+        if (videoId) {
+          console.log('Creating fallback video iframe...');
+          videoIframe = document.createElement('iframe');
+          videoIframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+          videoIframe.title = 'GPS / Geo Fencing Attendance Video';
+          videoIframe.frameBorder = '0';
+          videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          videoIframe.allowFullscreen = true;
+          videoIframe.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 25px;
+          `;
+          
+          videoPlayer.innerHTML = '';
+          videoPlayer.appendChild(videoIframe);
+          videoPlayer.classList.add('active');
+          videoThumbnail.style.opacity = '0';
+          videoThumbnail.style.transform = 'scale(0.95)';
+          
+          isVideoLoaded = true;
+          hasAutoPlayed = true;
+          isVideoPaused = false;
+          
+          console.log('Fallback video iframe created successfully');
+        }
       }
     }
 
     // Initialize Intersection Observer
     setupIntersectionObserver();
 
-    // Add smooth hover effect (no play functionality)
+    // Add smooth hover effect and manual fallback trigger
     videoContainer.addEventListener('mouseenter', function() {
       if (!isVideoLoaded) {
         videoContainer.style.transform = 'scale(1.02)';
@@ -183,6 +238,20 @@ document.addEventListener("DOMContentLoaded", () => {
         videoContainer.style.transform = 'scale(1)';
       }
     });
+
+    // Manual fallback trigger - click on thumbnail to load video
+    videoThumbnail.addEventListener('click', function() {
+      console.log('Manual video trigger activated...');
+      loadAndPlayVideoWithFallback();
+    });
+
+    // Add debug info for deployment troubleshooting
+    console.log('=== GPS Video Player Debug Info ===');
+    console.log('Current origin:', window.location.origin);
+    console.log('User agent:', navigator.userAgent);
+    console.log('Protocol:', window.location.protocol);
+    console.log('Hostname:', window.location.hostname);
+    console.log('=====================================');
 
     console.log('GPS video player with auto-play initialized successfully');
   }
