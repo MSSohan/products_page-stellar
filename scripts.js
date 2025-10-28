@@ -38,13 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Create YouTube iframe with auto-play enabled - Fixed for deployment
+      // GitHub Pages optimized YouTube embed - Fixed for production deployment
       videoIframe = document.createElement('iframe');
-      videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1&cc_load_policy=0&controls=1&disablekb=1&fs=1&hl=en&iv_load_policy=3&modestbranding=1&origin=*`;
+      videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1&enablejsapi=1`;
       videoIframe.title = 'GPS / Geo Fencing Attendance Video';
       videoIframe.frameBorder = '0';
-      videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      videoIframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
       videoIframe.allowFullscreen = true;
       videoIframe.style.cssText = `
         position: absolute;
@@ -54,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         height: 100%;
         border: none;
         border-radius: 25px;
+        background: #000;
       `;
 
       // Clear previous content and add iframe
@@ -181,22 +181,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Enhanced video loading with deployment fallback
+    // GitHub Pages specific video loading with multiple fallbacks
     function loadAndPlayVideoWithFallback() {
       try {
+        // Try auto-play first
         loadAndPlayVideo();
       } catch (error) {
-        console.error('Error loading video:', error);
+        console.error('Auto-play failed, trying GitHub Pages fallback...', error);
         
-        // Fallback: Create iframe directly without auto-play
+        // GitHub Pages fallback: No autoplay, basic embed
         const videoId = videoThumbnail.getAttribute('data-video-id');
         if (videoId) {
-          console.log('Creating fallback video iframe...');
+          console.log('Creating GitHub Pages compatible video iframe...');
+          
+          // Remove existing iframe if any
+          if (videoIframe && videoIframe.parentNode) {
+            videoIframe.parentNode.removeChild(videoIframe);
+          }
+          
           videoIframe = document.createElement('iframe');
-          videoIframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+          // GitHub Pages compatible - absolute minimal YouTube URL
+          videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
           videoIframe.title = 'GPS / Geo Fencing Attendance Video';
           videoIframe.frameBorder = '0';
-          videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          videoIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
           videoIframe.allowFullscreen = true;
           videoIframe.style.cssText = `
             position: absolute;
@@ -206,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
             height: 100%;
             border: none;
             border-radius: 25px;
+            background: #000;
           `;
           
           videoPlayer.innerHTML = '';
@@ -218,7 +227,16 @@ document.addEventListener("DOMContentLoaded", () => {
           hasAutoPlayed = true;
           isVideoPaused = false;
           
-          console.log('Fallback video iframe created successfully');
+          console.log('GitHub Pages minimal video iframe created successfully');
+          
+          // Enhanced load event for debugging
+          videoIframe.addEventListener('load', function() {
+            console.log('✅ Video iframe loaded successfully on GitHub Pages');
+          });
+          
+          videoIframe.addEventListener('error', function() {
+            console.error('❌ Video iframe failed to load on GitHub Pages');
+          });
         }
       }
     }
@@ -251,6 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log('User agent:', navigator.userAgent);
     console.log('Protocol:', window.location.protocol);
     console.log('Hostname:', window.location.hostname);
+    console.log('GitHub Pages:', window.location.hostname.includes('github.io'));
+    console.log('HTTPS:', window.location.protocol === 'https:');
+    console.log('Referrer Policy:', document.referrer ? document.referrer.substring(0, 100) : 'No referrer');
     console.log('=====================================');
 
     console.log('GPS video player with auto-play initialized successfully');

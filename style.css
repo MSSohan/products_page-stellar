@@ -2077,11 +2077,13 @@
 @media (max-width: 1199px) {
     .video-container-stunning {
         height: 400px;
+        margin-top: 55px;
     }
     
     .context-content-stunning {
         height: 400px;
         padding: 40px 35px;
+        margin-top: 55px;
     }
     
     .section-title-stunning {
@@ -2091,55 +2093,52 @@
     
     .context-list-stunning li {
         font-size: 15px;
-        padding: 16px 0 16px 55px;
-        min-height: 55px;
+        padding: 12px 0 12px 45px;
+        min-height: 25px;
     }
     
     .list-icon {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
     
     .list-icon svg {
-        width: 18px;
-        height: 18px;
+        width: 15px;
+        height: 15px;
     }
 }
 
 @media (max-width: 991px) {
-    .gps-section {
-        padding: 60px 0;
-    }
-    
     .video-container-stunning {
-        height: 350px;
-        margin-bottom: 40px;
+        height: 380px;
+        margin-top: 50px;
     }
     
     .context-content-stunning {
-        height: 350px;
-        padding: 35px 30px;
+        height: 380px;
+        padding: 40px 35px;
+        margin-top: 55px;
     }
     
     .section-title-stunning {
-        font-size: 26px;
-        margin-bottom: 25px;
+        font-size: 28px;
+        margin-bottom: 30px;
     }
     
     .context-list-stunning li {
-        font-size: 14px;
-        padding: 14px 0 14px 50px;
-        min-height: 50px;
+        font-size: 15px;
+        padding: 12px 0 12px 45px;
+        min-height: 25px;
     }
     
     .list-icon {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
     }
     
     .list-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
     }
 }
 
@@ -2149,8 +2148,9 @@
     }
     
     .video-container-stunning {
-        height: 250px;
+        height: 350px;
         border-radius: 20px;
+        margin-top: 0px;
     }
     
     .context-content-stunning {
@@ -2184,12 +2184,13 @@
 
 @media (max-width: 480px) {
     .gps-section {
-        padding: 35px 0;
+        padding: 40px 0;
     }
     
     .video-container-stunning {
         height: 250px;
         border-radius: 15px;
+        margin-top: 2px;
     }
     
     .context-content-stunning {
