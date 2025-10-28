@@ -10,14 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Functions related to the GPS video player - Auto-play on scroll
 
   function initializeGPSVideoPlayer() {
-    console.log('Initializing GPS video player with auto-play on scroll...');
-    
     const videoContainer = document.querySelector('.video-container-stunning');
     const videoThumbnail = document.querySelector('.video-thumbnail');
     const videoPlayer = document.querySelector('.video-player');
 
     if (!videoContainer || !videoThumbnail || !videoPlayer) {
-      console.error('GPS video elements not found');
       return;
     }
 
@@ -34,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const videoId = videoThumbnail.getAttribute('data-video-id');
       if (!videoId) {
-        console.error('Video ID not found');
         return;
       }
 
@@ -74,15 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
       isVideoLoaded = true;
       hasAutoPlayed = true;
       isVideoPaused = false;
-      
-      console.log('Video auto-played successfully');
     }
 
     // Function to pause video
     function pauseVideo() {
       if (videoIframe && !isVideoPaused) {
-        console.log('Pausing video...');
-        
         // Update iframe src to pause the video
         const currentSrc = videoIframe.src;
         videoIframe.src = currentSrc.replace(/autoplay=1/, 'autoplay=0');
@@ -90,15 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Add pause indicator
         videoPlayer.style.opacity = '0.8';
-        console.log('Video paused');
       }
     }
 
     // Function to resume video
     function resumeVideo() {
       if (videoIframe && isVideoPaused) {
-        console.log('Resuming video...');
-        
         // Update iframe src to resume the video
         const currentSrc = videoIframe.src;
         videoIframe.src = currentSrc.replace(/autoplay=0/, 'autoplay=1');
@@ -106,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Remove pause indicator
         videoPlayer.style.opacity = '1';
-        console.log('Video resumed');
       }
     }
 
@@ -117,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
         videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1&cc_load_policy=0&controls=1&disablekb=1&fs=1&hl=en&iv_load_policy=3&modestbranding=1&origin=*&start=0`;
         isVideoPaused = false;
         videoPlayer.style.opacity = '1';
-        console.log('Video reset to beginning');
       }
     }
 
@@ -125,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function setupIntersectionObserver() {
       if (!('IntersectionObserver' in window)) {
         // Fallback: Auto-play after a short delay if IntersectionObserver is not supported
-        console.log('IntersectionObserver not supported, using fallback...');
         setTimeout(() => {
           loadAndPlayVideoWithFallback();
         }, 2000);
@@ -144,15 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
           
           if (isVisible && !hasAutoPlayed) {
             // Section becomes visible for the first time - load and play video
-            console.log('GPS section is now visible, auto-playing video...');
             loadAndPlayVideoWithFallback();
           } else if (isVisible && isVideoPaused) {
             // Section becomes visible again - resume video
-            console.log('GPS section is visible again, resuming video...');
             resumeVideo();
           } else if (!isVisible && hasAutoPlayed && !isVideoPaused) {
             // Section is no longer visible - pause video
-            console.log('GPS section is no longer visible, pausing video...');
             pauseVideo();
           }
         });
@@ -162,18 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const gpsSection = document.querySelector('.gps-section');
       if (gpsSection) {
         observer.observe(gpsSection);
-        console.log('Intersection Observer set up for GPS section with pause/resume functionality');
-        
         // Additional fallback: Try auto-play after 5 seconds regardless
         setTimeout(() => {
           if (!hasAutoPlayed) {
-            console.log('Fallback: Attempting to auto-play video after 5 seconds...');
             loadAndPlayVideoWithFallback();
           }
         }, 5000);
         
       } else {
-        console.log('GPS section not found for Intersection Observer, using fallback...');
         // Immediate fallback if section not found
         setTimeout(() => {
           loadAndPlayVideoWithFallback();
@@ -187,13 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Try auto-play first
         loadAndPlayVideo();
       } catch (error) {
-        console.error('Auto-play failed, trying GitHub Pages fallback...', error);
-        
         // GitHub Pages fallback: No autoplay, basic embed
         const videoId = videoThumbnail.getAttribute('data-video-id');
         if (videoId) {
-          console.log('Creating GitHub Pages compatible video iframe...');
-          
           // Remove existing iframe if any
           if (videoIframe && videoIframe.parentNode) {
             videoIframe.parentNode.removeChild(videoIframe);
@@ -227,16 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
           hasAutoPlayed = true;
           isVideoPaused = false;
           
-          console.log('GitHub Pages minimal video iframe created successfully');
-          
           // Enhanced load event for debugging
-          videoIframe.addEventListener('load', function() {
-            console.log('✅ Video iframe loaded successfully on GitHub Pages');
-          });
+          videoIframe.addEventListener('load', function() {});
           
-          videoIframe.addEventListener('error', function() {
-            console.error('❌ Video iframe failed to load on GitHub Pages');
-          });
+          videoIframe.addEventListener('error', function() {});
         }
       }
     }
@@ -259,22 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Manual fallback trigger - click on thumbnail to load video
     videoThumbnail.addEventListener('click', function() {
-      console.log('Manual video trigger activated...');
       loadAndPlayVideoWithFallback();
     });
-
-    // Add debug info for deployment troubleshooting
-    console.log('=== GPS Video Player Debug Info ===');
-    console.log('Current origin:', window.location.origin);
-    console.log('User agent:', navigator.userAgent);
-    console.log('Protocol:', window.location.protocol);
-    console.log('Hostname:', window.location.hostname);
-    console.log('GitHub Pages:', window.location.hostname.includes('github.io'));
-    console.log('HTTPS:', window.location.protocol === 'https:');
-    console.log('Referrer Policy:', document.referrer ? document.referrer.substring(0, 100) : 'No referrer');
-    console.log('=====================================');
-
-    console.log('GPS video player with auto-play initialized successfully');
   }
 
   // ===== CONTACT FORM SECTION =====
@@ -282,11 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initializeStellarContactForm() {
     const stellarForm = document.getElementById('stellarContactForm');
+    
+    if (!stellarForm) {
+      return;
+    }
+
     const formMessage = document.getElementById('formMessage');
     const submitBtn = stellarForm.querySelector('.stellar-btn');
 
-    if (!stellarForm) {
-      console.error('Stellar contact form not found');
+    if (!formMessage || !submitBtn) {
       return;
     }
 
@@ -361,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     });
   }
+
   function initializeFloatingLabels() {
     // Get all input fields and selects
     const inputFields = document.querySelectorAll('.input-field input, .input-field select');
