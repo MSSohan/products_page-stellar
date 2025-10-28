@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize all components
-    initializeStellarContactForm();
     initializeFloatingLabels();
     initializeGPSVideoPlayer();
     initializeReviewSection();
+    initializeStellarContactForm();
   });
 
   // ===== GPS VIDEO PLAYER SECTION =====
