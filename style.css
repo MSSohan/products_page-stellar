@@ -271,20 +271,11 @@
     bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
+    width: 60px;
+    height: 2px;
     background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-    border-radius: 2px;
+    border-radius: 1px;
 } */
-
-@keyframes titleGlow {
-    from {
-        text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    }
-    to {
-        text-shadow: 0 0 30px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2);
-    }
-}
 
 .feature-description {
     font-size: 14px;
@@ -431,7 +422,7 @@
 
     .feature-description {
         font-size: 13px;
-        padding: 10px; 
+        padding: 10px;
         margin-bottom: 15px;
     }
 }
@@ -458,6 +449,324 @@
 
 @media (max-width: 767px) {
     .feature-card-container {
+        max-width: 100%;
+    }
+}
+
+/* ========================================
+   PAYROLL CARDS SECTION STYLES (Duplicate of Features Cards)
+   ======================================== */
+.payroll-cards-section {
+    background: white;
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.payroll-cards-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.payroll-card-container {
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.payroll-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px 2px 30px 2px;
+    padding: 3px;
+    text-align: center;
+    color: #1e293b;
+    position: relative;
+    overflow: hidden;
+    height: 480px;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    transform-origin: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.payroll-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.payroll-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.payroll-card:hover {
+    /* transform: translateY(-10px) scale(1.02); */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-color: #3b82f6;
+}
+
+.payroll-image {
+    position: relative;
+    margin-top: 5px;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 300px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.payroll-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.payroll-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.payroll-card:hover .payroll-overlay {
+    opacity: 1;
+}
+
+.payroll-card:hover .payroll-card-image {
+    transform: scale(1.1);
+}
+
+.payroll-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.payroll-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: #252525;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    /* animation: titleGlow 2s ease-in-out infinite alternate; */
+}
+
+/* .payroll-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    border-radius: 1px;
+} */
+
+.payroll-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 8px;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.01);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    flex: 1;
+    text-align: justify;
+    height: 80%;
+}
+
+/* .payroll-description::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    border-radius: 1px;
+} */
+
+/* Responsive Design for Payroll Cards */
+@media (max-width: 1199px) {
+    .payroll-cards-section {
+        padding: 80px 0;
+    }
+
+    .payroll-card {
+        min-height: 400px;
+        padding: 20px;
+    }
+
+    .payroll-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .payroll-description {
+        font-size: 14px;
+        padding: 18px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .payroll-cards-section {
+        padding: 30px 0px;
+    }
+
+    .payroll-card-container {
+        margin-bottom: 10px;
+    }
+
+    .payroll-card {
+        min-height: 350px;
+        padding: 20px 0px;
+        width: 100%
+    }
+
+    .payroll-image {
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .payroll-title {
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+    .payroll-description {
+        font-size: 13px;
+        padding: 8px;
+        margin-bottom: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .payroll-cards-section {
+        padding: 50px 0;
+    }
+
+    .payroll-card-container {
+        margin-bottom: 40px;
+    }
+
+    .payroll-card {
+        min-height: 320px;
+        width: auto;
+        padding: 20px 15px;
+        margin: 0 10px;
+    }
+
+    .payroll-image {
+        height: 250px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .payroll-title {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .payroll-description {
+        font-size: 14px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .payroll-cards-section {
+        padding: 25px 0;
+    }
+
+    .payroll-card-container {
+        margin-bottom: 25px;
+    }
+
+    .payroll-card {
+        min-height: 300px;
+        padding: 12px 12px;
+        margin: 0 5px;
+    }
+
+    .payroll-image {
+        height: 220px;
+        margin-bottom: 12px;
+    }
+
+    .payroll-title {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .payroll-description {
+        font-size: 13px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+
+/* Payroll Cards Grid System */
+@media (min-width: 1200px) {
+    .payroll-card-container {
+        max-width: 33.333%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .payroll-card-container {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .payroll-card-container {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .payroll-card-container {
         max-width: 100%;
     }
 }
