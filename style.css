@@ -10,7 +10,7 @@
 .features-section-title {
     font-size: 48px;
     font-weight: 800;
-    color: #252525;
+    color: #1e3a8a;
     text-align: center;
     margin-bottom: 2px;
     text-transform: uppercase;
@@ -33,7 +33,7 @@
 
 .features-section-subtitle {
     font-size: 18px;
-    color: #252525;
+    color: #1e3a8a;
     text-align: center;
     margin-bottom: 60px;
     font-weight: 400;
@@ -256,7 +256,7 @@
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 5px;
-    color: #252525;
+    color: #1e3a8a;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
@@ -1548,7 +1548,7 @@
 .section-title-stunning {
     font-size: 32px;
     font-weight: 700;
-    color: #252525;
+    color: #1e3a8a;
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1598,7 +1598,7 @@
 }
 
 .context-list-stunning li:hover {
-    color: #252525;
+    color: #1e3a8a;
     padding-left: 70px;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
     border-radius: 10px;
@@ -1821,7 +1821,7 @@
 .review-section-title {
     font-size: 48px;
     font-weight: 700;
-    color: #252525;
+    color: #1e3a8a;
     margin: 40px;
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -1830,7 +1830,7 @@
     text-align: center;
 }
 
-/* .review-section-title::after {
+.review-section-title::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -1840,7 +1840,7 @@
     height: 4px;
     background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     border-radius: 2px;
-} */
+}
 
 .review-section-subtitle {
     font-size: 20px;
