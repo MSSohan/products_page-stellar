@@ -454,6 +454,384 @@
 }
 
 /* ========================================
+   FEATURE CARDS STYLE 2 SECTION STYLES (Desktop Grid + Mobile Slideshow)
+   ======================================== */
+.features-cards-style2-section {
+    background: white;
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.features-cards-style2-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Card styling for both desktop and mobile */
+.features-cards-style2-section .feature-card-container {
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.features-cards-style2-section .feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px 2px 30px 2px;
+    padding: 3px;
+    text-align: center;
+    color: #1e293b;
+    position: relative;
+    overflow: hidden;
+    height: 480px;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    transform-origin: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+}
+
+.features-cards-style2-section .feature-card:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-color: #3b82f6;
+}
+
+.features-cards-style2-section .feature-image {
+    position: relative;
+    margin-top: 5px;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 300px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.features-cards-style2-section .feature-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.features-cards-style2-section .feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.features-cards-style2-section .feature-card:hover .feature-overlay {
+    opacity: 1;
+}
+
+.features-cards-style2-section .feature-card:hover .feature-card-image {
+    transform: scale(1.1);
+}
+
+.features-cards-style2-section .feature-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.features-cards-style2-section .feature-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: #252525;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.features-cards-style2-section .feature-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 8px;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.01);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    flex: 1;
+    text-align: justify;
+    height: 80%;
+}
+
+/* Responsive Design for Desktop Cards */
+@media (max-width: 1199px) {
+    .features-cards-style2-section {
+        padding: 80px 0;
+    }
+
+    .features-cards-style2-section .feature-card {
+        min-height: 400px;
+        padding: 20px;
+    }
+
+    .features-cards-style2-section .feature-title {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .features-cards-style2-section .feature-description {
+        font-size: 14px;
+        padding: 18px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .features-cards-style2-section {
+        padding: 30px 0px;
+    }
+
+    .features-cards-style2-section .feature-card-container {
+        margin-bottom: 10px;
+    }
+
+    .features-cards-style2-section .feature-card {
+        min-height: 350px;
+        padding: 20px 0px;
+        width: 100%
+    }
+
+    .features-cards-style2-section .feature-image {
+        height: 180px;
+        margin-bottom: 20px;
+    }
+
+    .features-cards-style2-section .feature-title {
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+    .features-cards-style2-section .feature-description {
+        font-size: 13px;
+        padding: 8px;
+        margin-bottom: 18px;
+    }
+}
+
+/* Mobile Card Adjustments */
+@media (max-width: 767px) {
+    .features-cards-style2-section {
+        padding: 50px 0;
+    }
+
+    .features-cards-style2-section .feature-card {
+        min-height: 350px;
+        width: 100%;
+        max-width: 350px;
+        padding: 20px 15px;
+    }
+
+    .features-cards-style2-section .feature-image {
+        height: 200px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .features-cards-style2-section .feature-title {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .features-cards-style2-section .feature-description {
+        font-size: 14px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-cards-style2-section {
+        padding: 25px 0;
+    }
+
+    .features-cards-style2-section .feature-card {
+        min-height: 320px;
+        width: 100%;
+        max-width: 300px;
+        padding: 15px 12px;
+    }
+
+    .features-cards-style2-section .feature-image {
+        height: 180px;
+        margin-bottom: 12px;
+    }
+
+    .features-cards-style2-section .feature-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+
+    .features-cards-style2-section .feature-description {
+        font-size: 13px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+
+/* Desktop Grid Layout - Hide slideshow on desktop */
+@media (min-width: 768px) {
+    .desktop-grid-layout {
+        gap: 25px;
+    }
+    
+    .style2-slideshow-container {
+        display: none;
+    }
+}
+
+/* Mobile Slideshow Layout */
+@media (max-width: 767px) {
+    .desktop-grid-layout {
+        display: none;
+    }
+    
+    .style2-slideshow-container {
+        position: relative;
+        overflow: hidden;
+        padding: 0 10px;
+    }
+    
+    .style2-slideshow-wrapper {
+        display: flex;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+        margin-bottom: 0px;
+    }
+    
+    .style2-card-slide {
+        flex: 0 0 87%;
+        padding: 0 3px;
+        min-height: 600px;
+        opacity: 0.4;
+        transform: scale(0.8);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        margin: 0 3px;
+    }
+    
+    .style2-card-slide.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 10;
+    }
+    
+    /* Ghost slide styles moved outside mobile media query for universal compatibility */
+    .style2-card-slide.prev-slide {
+        opacity: 0.3;
+        transform: scale(0.7) translateX(38%);
+        z-index: 5;
+    }
+    
+    .style2-card-slide.next-slide {
+        opacity: 0.3;
+        transform: scale(0.7) translateX(-38%);
+        z-index: 5;
+    }
+    
+    /* Navigation Arrows with #252525 Color and Transparent Background */
+    .style2-slideshow-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: 2px solid #252525;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        color: #252525;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+    }
+    
+    .style2-slideshow-nav:hover {
+        background: rgba(37, 37, 37, 0.1);
+        color: #252525;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 5px 15px rgba(37, 37, 37, 0.3);
+    }
+    
+    .style2-slideshow-nav:active {
+        transform: translateY(-50%) scale(0.95);
+        box-shadow: #252525 0 5px 10px;
+    }
+    
+    .style2-slideshow-nav svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+    }
+    
+    .style2-slideshow-nav.prev {
+        left: 5px;
+    }
+    
+    .style2-slideshow-nav.next {
+        right: 5px;
+    }
+    
+    /* Slideshow Indicators */
+    .style2-slideshow-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: -55px 0 0 0;
+    }
+    
+    .style2-slideshow-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid rgba(37, 37, 37, 0.3);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .style2-slideshow-indicator.active {
+        background: #252525;
+        border-color: #252525;
+        box-shadow: 0 0 8px rgba(37, 37, 37, 0.4);
+    }
+}
+
+/* ========================================
    PAYROLL CARDS SECTION STYLES (Duplicate of Features Cards)
    ======================================== */
 .payroll-cards-section {
@@ -751,6 +1129,32 @@
     .payroll-card-container {
         max-width: 33.333%;
     }
+
+/* Payroll Cards Grid System */
+@media (min-width: 1200px) {
+    .payroll-card-container {
+        max-width: 33.333%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .payroll-card-container {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .payroll-card-container {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .payroll-card-container {
+        max-width: 100%;
+    }
+}
+
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

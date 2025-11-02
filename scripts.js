@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeGPSVideoPlayer();
     initializeReviewSection();
     initializeStellarContactForm();
+    initializeFeaturesStyle2Slideshow();
   });
 
   // ===== GPS VIDEO PLAYER SECTION =====
