@@ -1129,12 +1129,6 @@
     .payroll-card-container {
         max-width: 33.333%;
     }
-
-/* Payroll Cards Grid System */
-@media (min-width: 1200px) {
-    .payroll-card-container {
-        max-width: 33.333%;
-    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

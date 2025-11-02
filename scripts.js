@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeGPSVideoPlayer();
     initializeReviewSection();
     initializeStellarContactForm();
+    initializeMobileAppSlideshow();
     initializeFeaturesStyle2Slideshow();
+    initializeFeaturesStyle3Slideshow();
   });
 
   // ===== GPS VIDEO PLAYER SECTION =====
@@ -630,3 +632,859 @@ document.addEventListener("DOMContentLoaded", () => {
   // DOM event listeners and general setup
 
   // All initializations are already called in the main DOMContentLoaded event above
+
+  // ===== MOBILE APP SLIDESHOW =====
+  // Functions related to the Mobile App Slideshow
+
+  function initializeMobileAppSlideshow() {
+    const slideshowWrapper = document.querySelector('.slideshow-wrapper');
+    
+    if (!slideshowWrapper) {
+      return;
+    }
+
+    const slides = slideshowWrapper.querySelectorAll('.slideshow-slide');
+    const indicators = slideshowWrapper.querySelectorAll('.slideshow-indicator');
+
+    if (slides.length === 0) {
+      return;
+    }
+
+    let currentSlideIndex = 0;
+    let autoPlayInterval = null;
+    const autoPlayDelay = 3000; // 3 seconds
+
+    // Show specific slide
+    function showSlide(index) {
+      // Remove active class from all slides
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+      
+      // Remove active class from all indicators
+      indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+      });
+      
+      // Add active class to current slide and indicator
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      
+      if (indicators[index]) {
+        indicators[index].classList.add('active');
+      }
+      
+      currentSlideIndex = index;
+    }
+
+    // Navigate to next slide
+    function nextSlide() {
+      const nextIndex = (currentSlideIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    // Setup indicator dots
+    function setupIndicators() {
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+          e.preventDefault();
+          showSlide(index);
+        });
+      });
+    }
+
+    // Start auto-play
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+    }
+
+    // Stop auto-play
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+      }
+    }
+
+    // Setup touch/swipe gestures for mobile
+    function setupTouchNavigation() {
+      let startX = 0;
+      let endX = 0;
+      let startY = 0;
+      let endY = 0;
+      const minSwipeDistance = 30; // Reduced threshold for better mobile detection
+      const maxVerticalDistance = 100;
+
+      // Add touch event listeners to the entire phone screen for better touch capture
+      const phoneScreen = document.querySelector('.phone-screen-advanced');
+      const targetElement = phoneScreen || slideshowWrapper;
+
+      // Touch start event
+      targetElement.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }, { passive: true });
+
+      // Touch end event
+      targetElement.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        endY = e.changedTouches[0].clientY;
+        
+        const deltaX = Math.abs(endX - startX);
+        const deltaY = Math.abs(endY - startY);
+        
+        console.log('Touch end detected:', { startX, endX, deltaX, deltaY });
+        
+        // Handle tap/click for mobile navigation (when no movement)
+        if (deltaX < 5 && deltaY < 5 && (endX - startX) === 0 && (endY - startY) === 0) {
+          console.log('Tap detected - navigating to next slide');
+          nextSlide();
+          return;
+        }
+        
+        // Handle swipe gestures (when sufficient movement)
+        if (deltaX > minSwipeDistance && deltaX > deltaY) {
+          e.preventDefault(); // Prevent default behavior
+          e.stopPropagation();
+          
+          console.log('Swipe detected:', deltaX > deltaY ? 'horizontal' : 'vertical');
+          
+          if (endX < startX) {
+            // Swipe left - next slide
+            console.log('Swipe left - next slide');
+            nextSlide();
+          } else {
+            // Swipe right - previous slide
+            console.log('Swipe right - previous slide');
+            const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(prevIndex);
+          }
+        }
+      }, { passive: false });
+
+      // Touch move event to prevent conflicts with scrolling
+      targetElement.addEventListener('touchmove', (e) => {
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = Math.abs(currentX - startX);
+        const deltaY = Math.abs(currentY - startY);
+        
+        // If horizontal movement is greater than vertical, prevent default scrolling
+        if (deltaX > deltaY && deltaX > 10) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, { passive: false });
+    }
+
+    // Setup navigation button functionality
+    function setupNavButtons() {
+      const prevBtn = slideshowWrapper.querySelector('.slideshow-nav-btn.prev');
+      const nextBtn = slideshowWrapper.querySelector('.slideshow-nav-btn.next');
+      
+      console.log('Setting up nav buttons:', {
+        prevBtn: !!prevBtn,
+        nextBtn: !!nextBtn,
+        prevBtnHtml: prevBtn ? prevBtn.outerHTML : 'not found',
+        nextBtnHtml: nextBtn ? nextBtn.outerHTML : 'not found'
+      });
+      
+      // Previous button - try multiple event types for better compatibility
+      if (prevBtn) {
+        const handlePrevClick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Previous button clicked');
+          const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+          showSlide(prevIndex);
+        };
+        
+        prevBtn.addEventListener('click', handlePrevClick);
+        prevBtn.addEventListener('touchend', handlePrevClick);
+        console.log('Previous button event listeners attached');
+      } else {
+        console.log('Previous button not found');
+      }
+      
+      // Next button - try multiple event types for better compatibility
+      if (nextBtn) {
+        const handleNextClick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Next button clicked');
+          nextSlide();
+        };
+        
+        nextBtn.addEventListener('click', handleNextClick);
+        nextBtn.addEventListener('touchend', handleNextClick);
+        console.log('Next button event listeners attached');
+      } else {
+        console.log('Next button not found');
+      }
+    }
+
+    // Pause auto-play on hover
+    function setupHoverPause() {
+      const slideshowContainer = slideshowWrapper.closest('.phone-screen-advanced');
+      
+      if (slideshowContainer) {
+        slideshowContainer.addEventListener('mouseenter', () => {
+          stopAutoPlay();
+        });
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+          startAutoPlay();
+        });
+      }
+    }
+
+    // Setup visibility change to pause when tab is not active
+    function setupVisibilityChange() {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoPlay();
+        } else {
+          startAutoPlay();
+        }
+      });
+    }
+
+    // Initialize slideshow
+    showSlide(0);
+    setupIndicators();
+    setupNavButtons();
+    
+    // Start with a short delay to ensure DOM is fully loaded
+    setTimeout(() => {
+      startAutoPlay();
+      setupTouchNavigation();
+      setupHoverPause();
+      setupVisibilityChange();
+    }, 100);
+  }
+
+  // ===== FEATURES STYLE 2 SLIDESHOW =====
+  // Functions related to the Feature Cards Style 2 Slideshow with swipe functionality
+
+  function initializeFeaturesStyle2Slideshow() {
+    const slideshowContainer = document.getElementById('featuresStyle2Slideshow');
+    
+    if (!slideshowContainer) {
+      return;
+    }
+
+    const slideshowWrapper = slideshowContainer.querySelector('.style2-slideshow-wrapper');
+    const slides = slideshowContainer.querySelectorAll('.style2-card-slide');
+    const indicators = slideshowContainer.querySelectorAll('.style2-slideshow-indicator');
+    const prevBtn = slideshowContainer.querySelector('.style2-slideshow-nav.prev');
+    const nextBtn = slideshowContainer.querySelector('.style2-slideshow-nav.next');
+
+    if (!slideshowWrapper || slides.length === 0) {
+      return;
+    }
+
+    let currentSlideIndex = 0;
+    let autoPlayInterval = null;
+    const autoPlayDelay = 4000; // 4 seconds for feature cards
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isTransitioning = false;
+
+    // Check if we're on mobile/tablet
+    function isMobileView() {
+      return window.innerWidth <= 767;
+    }
+
+    // Show specific slide with ghost/peek effect
+    function showSlide(index) {
+      if (isTransitioning || !isMobileView()) {
+        return;
+      }
+
+      isTransitioning = true;
+
+      // Remove all classes from all slides
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'prev-slide', 'next-slide');
+      });
+      
+      indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+      });
+      
+      // Add classes for ghost effect
+      const prevIndex = (index - 1 + slides.length) % slides.length;
+      const nextIndex = (index + 1) % slides.length;
+      
+      if (slides[prevIndex]) {
+        slides[prevIndex].classList.add('prev-slide');
+      }
+      
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      
+      if (slides[nextIndex]) {
+        slides[nextIndex].classList.add('next-slide');
+      }
+      
+      if (indicators[index]) {
+        indicators[index].classList.add('active');
+      }
+      
+      // Update transform
+      const translateX = -index * 87; // 85% because slides are 85% width for ghost effect
+      slideshowWrapper.style.transform = `translateX(${translateX}%)`;
+      
+      currentSlideIndex = index;
+
+      // Reset transition lock after animation completes
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }
+
+    // Navigate to next slide
+    function nextSlide() {
+      if (isTransitioning || !isMobileView()) {
+        return;
+      }
+      const nextIndex = (currentSlideIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    // Navigate to previous slide
+    function prevSlide() {
+      if (isTransitioning || !isMobileView()) {
+        return;
+      }
+      const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+
+    // Setup indicator dots
+    function setupIndicators() {
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (!isTransitioning && isMobileView()) {
+            showSlide(index);
+          }
+        });
+      });
+    }
+
+    // Setup navigation buttons
+    function setupNavButtons() {
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          prevSlide();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          nextSlide();
+        });
+      }
+    }
+
+    // Touch/swipe functionality
+    function setupTouchNavigation() {
+      let startX = 0;
+      let startY = 0;
+      let startTime = 0;
+      const minSwipeDistance = 30; // Reduced for better responsiveness
+      const maxSwipeTime = 800; // Increased time window for better detection
+
+      // Add touch events to the container instead of wrapper
+      slideshowContainer.addEventListener('touchstart', (e) => {
+        if (!isMobileView()) return;
+        
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
+        touchStartX = startX;
+
+        console.log('Touch start:', { startX, startY });
+        // Pause auto-play on touch
+        stopAutoPlay();
+      }, { passive: true });
+
+      // Touch move event
+      slideshowContainer.addEventListener('touchmove', (e) => {
+        if (!isMobileView()) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = Math.abs(currentX - startX);
+        const deltaY = Math.abs(currentY - startY);
+
+        // If horizontal movement is dominant, prevent default scrolling
+        if (deltaX > deltaY && deltaX > 10) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Touch end event
+      slideshowContainer.addEventListener('touchend', (e) => {
+        if (!isMobileView()) return;
+
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        const deltaTime = Date.now() - startTime;
+
+        console.log('Touch end:', {
+          startX,
+          endX,
+          deltaX,
+          deltaY,
+          deltaTime,
+          maxSwipeTime,
+          swipeDistance: Math.abs(deltaX)
+        });
+
+        touchEndX = endX;
+
+        // Calculate swipe distance
+        const swipeDistance = Math.abs(deltaX);
+
+        // Determine if it's a valid swipe
+        if (swipeDistance > minSwipeDistance && deltaTime < maxSwipeTime && Math.abs(deltaY) < 150) {
+          console.log('Swipe detected:', deltaX > 0 ? 'right' : 'left');
+          e.preventDefault();
+          
+          if (deltaX > 0) {
+            // Swipe right - previous slide
+            console.log('Swipe right - going to previous slide');
+            prevSlide();
+          } else {
+            // Swipe left - next slide
+            console.log('Swipe left - going to next slide');
+            nextSlide();
+          }
+        } else {
+          console.log('Swipe not detected, distance:', swipeDistance, 'time:', deltaTime);
+        }
+
+        // Resume auto-play after swipe
+        setTimeout(() => {
+          startAutoPlay();
+        }, 2000);
+      }, { passive: false });
+
+      // Also add click handler for testing on desktop
+      slideshowContainer.addEventListener('click', (e) => {
+        if (!isMobileView()) return;
+        // Simple tap to go to next slide
+        console.log('Tap detected - going to next slide');
+        nextSlide();
+      });
+
+      // Mouse drag support for desktop testing
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragCurrentX = 0;
+
+      slideshowWrapper.addEventListener('mousedown', (e) => {
+        if (!isMobileView()) return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        slideshowWrapper.style.cursor = 'grabbing';
+        stopAutoPlay();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging || !isMobileView()) return;
+        dragCurrentX = e.clientX;
+        const deltaX = dragCurrentX - dragStartX;
+        
+        // Visual feedback during drag
+        const progress = deltaX / slideshowWrapper.offsetWidth;
+        slideshowWrapper.style.transform = `translateX(${-currentSlideIndex * 100 + progress * 100}%)`;
+      });
+
+      document.addEventListener('mouseup', (e) => {
+        if (!isDragging || !isMobileView()) return;
+        isDragging = false;
+        slideshowWrapper.style.cursor = 'grab';
+        
+        const deltaX = dragCurrentX - dragStartX;
+        const swipeDistance = Math.abs(deltaX);
+        
+        if (swipeDistance > minSwipeDistance) {
+          if (deltaX > 0) {
+            prevSlide();
+          } else {
+            nextSlide();
+          }
+        } else {
+          // Snap back to current slide
+          showSlide(currentSlideIndex);
+        }
+
+        setTimeout(() => {
+          startAutoPlay();
+        }, 1000);
+      });
+    }
+
+    // Auto-play functionality
+    function startAutoPlay() {
+      if (!isMobileView()) return;
+      
+      stopAutoPlay();
+      autoPlayInterval = setInterval(() => {
+        if (!isTransitioning) {
+          nextSlide();
+        }
+      }, autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+      }
+    }
+
+    // Handle window resize
+    function handleResize() {
+      if (isMobileView()) {
+        showSlide(currentSlideIndex);
+        startAutoPlay();
+      } else {
+        stopAutoPlay();
+        // Reset transform for desktop view
+        slideshowWrapper.style.transform = 'none';
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+        });
+        // Show all slides on desktop
+        slides.forEach(slide => {
+          slide.style.opacity = '1';
+          slide.style.transform = 'none';
+        });
+      }
+    }
+
+    // Visibility change handling
+    function setupVisibilityChange() {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoPlay();
+        } else {
+          startAutoPlay();
+        }
+      });
+    }
+
+    // Initialize slideshow
+    function init() {
+      console.log('Initializing Features Style 2 Slideshow...');
+      console.log('Slides found:', slides.length);
+      console.log('Is mobile view:', isMobileView());
+      
+      setupIndicators();
+      setupNavButtons();
+      setupTouchNavigation();
+      setupVisibilityChange();
+
+      // Initial state - always start with first slide visible
+      currentSlideIndex = 0;
+      
+      if (isMobileView()) {
+        console.log('Setting up mobile view');
+        showSlide(0);
+        setTimeout(() => {
+          startAutoPlay();
+        }, 500);
+      } else {
+        console.log('Setting up desktop view');
+        // Desktop view - show all slides
+        slides.forEach(slide => {
+          slide.style.opacity = '1';
+          slide.style.transform = 'none';
+          slide.classList.remove('active', 'prev-slide', 'next-slide');
+        });
+      }
+
+      // Handle resize
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Start initialization with a small delay to ensure DOM is ready
+    setTimeout(init, 100);
+  }
+
+  // ===== FEATURES STYLE 3 SLIDESHOW =====
+  // Functions related to the Feature Cards Style 3 Slideshow with swipe functionality (Works on Both Desktop and Mobile)
+
+  function initializeFeaturesStyle3Slideshow() {
+    const slideshowContainer = document.getElementById('featuresStyle3Slideshow');
+    
+    if (!slideshowContainer) {
+      return;
+    }
+
+    const slideshowWrapper = slideshowContainer.querySelector('.style3-slideshow-wrapper');
+    const slides = slideshowContainer.querySelectorAll('.style3-card-slide');
+    const indicators = slideshowContainer.querySelectorAll('.style3-slideshow-indicator');
+    const prevBtn = slideshowContainer.querySelector('.style3-slideshow-nav.prev');
+    const nextBtn = slideshowContainer.querySelector('.style3-slideshow-nav.next');
+
+    if (!slideshowWrapper || slides.length === 0) {
+      return;
+    }
+
+    let currentSlideIndex = 0;
+    let autoPlayInterval = null;
+    const autoPlayDelay = 5000; // 5 seconds for style 3
+    let isTransitioning = false;
+
+    // Show specific slide with ghost/peek effect
+    function showSlide(index) {
+      if (isTransitioning) {
+        return;
+      }
+
+      isTransitioning = true;
+
+      // Remove all classes from all slides
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'prev-slide', 'next-slide');
+      });
+      
+      indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+      });
+      
+      // Add classes for ghost effect
+      const prevIndex = (index - 1 + slides.length) % slides.length;
+      const nextIndex = (index + 1) % slides.length;
+      
+      if (slides[prevIndex]) {
+        slides[prevIndex].classList.add('prev-slide');
+      }
+      
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      
+      if (slides[nextIndex]) {
+        slides[nextIndex].classList.add('next-slide');
+      }
+      
+      if (indicators[index]) {
+        indicators[index].classList.add('active');
+      }
+      
+      // Calculate and update transform
+      updateSlideshowPosition(index);
+      
+      currentSlideIndex = index;
+
+      // Reset transition lock after animation completes
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 600);
+    }
+
+    // Update slideshow position based on current view
+    function updateSlideshowPosition(index) {
+      const isLargeDesktop = window.innerWidth > 1199;
+      const isTablet = window.innerWidth <= 1199 && window.innerWidth > 767;
+      const isMobile = window.innerWidth <= 767;
+
+      let slideWidth, visibleSlides, translateX;
+
+      if (isLargeDesktop) {
+        // Desktop: 3 slides visible
+        slideWidth = 33.333;
+        visibleSlides = 3;
+        translateX = -(index * slideWidth);
+      } else if (isTablet) {
+        // Tablet: 2 slides visible
+        slideWidth = 50;
+        visibleSlides = 2;
+        translateX = -(index * slideWidth);
+      } else {
+        // Mobile: 1 slide visible (85% width)
+        slideWidth = 85;
+        visibleSlides = 1;
+        translateX = -(index * slideWidth);
+      }
+
+      slideshowWrapper.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Navigate to next slide
+    function nextSlide() {
+      if (isTransitioning) {
+        return;
+      }
+      const nextIndex = (currentSlideIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    // Navigate to previous slide
+    function prevSlide() {
+      if (isTransitioning) {
+        return;
+      }
+      const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+
+    // Setup indicator dots
+    function setupIndicators() {
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (!isTransitioning) {
+            showSlide(index);
+          }
+        });
+      });
+    }
+
+    // Setup navigation buttons
+    function setupNavButtons() {
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          prevSlide();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          nextSlide();
+        });
+      }
+    }
+
+    // Touch/swipe functionality for mobile
+    function setupTouchNavigation() {
+      let startX = 0;
+      let startY = 0;
+      let startTime = 0;
+      const minSwipeDistance = 40;
+      const maxSwipeTime = 800;
+
+      // Add touch events to the container
+      slideshowContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
+        stopAutoPlay();
+      }, { passive: true });
+
+      slideshowContainer.addEventListener('touchmove', (e) => {
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = Math.abs(currentX - startX);
+        const deltaY = Math.abs(currentY - startY);
+
+        if (deltaX > deltaY && deltaX > 10) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      slideshowContainer.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        const deltaTime = Date.now() - startTime;
+
+        const swipeDistance = Math.abs(deltaX);
+
+        if (swipeDistance > minSwipeDistance && deltaTime < maxSwipeTime && Math.abs(deltaY) < 150) {
+          e.preventDefault();
+          
+          if (deltaX > 0) {
+            prevSlide();
+          } else {
+            nextSlide();
+          }
+        }
+
+        setTimeout(() => {
+          startAutoPlay();
+        }, 2000);
+      }, { passive: false });
+
+      // Click handler for desktop testing
+      slideshowContainer.addEventListener('click', (e) => {
+        if (window.innerWidth <= 767) {
+          nextSlide();
+        }
+      });
+    }
+
+    // Auto-play functionality
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(() => {
+        if (!isTransitioning) {
+          nextSlide();
+        }
+      }, autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+      }
+    }
+
+    // Handle window resize
+    function handleResize() {
+      updateSlideshowPosition(currentSlideIndex);
+    }
+
+    // Visibility change handling
+    function setupVisibilityChange() {
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoPlay();
+        } else {
+          startAutoPlay();
+        }
+      });
+    }
+
+    // Initialize slideshow
+    function init() {
+      console.log('Initializing Features Style 3 Slideshow...');
+      console.log('Slides found:', slides.length);
+      
+      setupIndicators();
+      setupNavButtons();
+      setupTouchNavigation();
+      setupVisibilityChange();
+
+      // Initial state
+      currentSlideIndex = 0;
+      showSlide(0);
+      startAutoPlay();
+
+      // Handle resize
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Start initialization with a small delay
+    setTimeout(init, 100);
+  }
