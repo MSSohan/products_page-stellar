@@ -137,7 +137,7 @@
 
 .feature-card {
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(210, 210, 210, 0.8);
     border-radius: 25px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     padding: 3px;
@@ -530,7 +530,7 @@
 
 .payroll-card {
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(210, 210, 210, 0.8);
     border-radius: 25px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     padding: 3px;
@@ -1132,7 +1132,7 @@
     border-radius: 25px;
     padding: 20px 35px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(210, 210, 210, 0.8);
     backdrop-filter: blur(20px);
     transition: all 0.4s ease;
     position: relative;
@@ -1192,7 +1192,7 @@
     line-height: 2.8;
     /* padding: 1px 0; */
     position: relative;
-    border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+    border-bottom: 1px solid rgba(220, 220, 220, 0.8);
     transition: all 0.3s ease;
     font-weight: 500;
     text-align: left;
@@ -1990,7 +1990,7 @@
         0 25px 80px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(210, 210, 210, 0.8);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
